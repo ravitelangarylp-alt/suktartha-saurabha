@@ -1,0 +1,49 @@
+:root {
+    --primary-maroon: #6e1714;
+    --bg-light-yellow: #fdedb3;
+    --nav-bg-tan: #cba26c;
+    --card-bg-tan: #b68b57;
+    --text-dark: #333333;
+    --parchment-bg: #e6c898;
+}
+
+body { font-family: 'Noto Sans Kannada', 'Mukta', sans-serif; background-color: var(--bg-light-yellow); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.6; }
+.navbar { background-color: var(--nav-bg-tan); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.navbar-brand { font-size: 24px; font-weight: 700; color: var(--primary-maroon); text-decoration: none; }
+.nav-links a { color: var(--primary-maroon); text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 16px; }
+
+.hero { background-color: var(--parchment-bg); text-align: center; padding: 40px 20px; border-bottom: 3px solid var(--primary-maroon); }
+.hero h1 { color: var(--primary-maroon); font-size: 2.5em; margin: 0 0 10px 0; font-family: 'Noto Serif Devanagari', serif; }
+.hero p { font-size: 1.1em; color: var(--primary-maroon); font-weight: 600; margin: 0; max-width: 800px; margin: 0 auto; }
+
+.search-section { background-color: var(--card-bg-tan); margin: 40px auto; padding: 30px; width: 80%; border-radius: 8px; text-align: center; }
+.search-section h2 { color: var(--primary-maroon); margin-top: 0; }
+.search-bar-container { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+.search-input { padding: 12px; font-size: 16px; border: 2px solid var(--primary-maroon); border-radius: 4px; width: 40%; background-color: #fffaf0; }
+.search-btn { background-color: var(--primary-maroon); color: white; padding: 12px 30px; font-size: 16px; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; }
+
+.sukta-collection { width: 85%; margin: 40px auto 60px auto; text-align: center; }
+.sukta-collection h2 { color: var(--primary-maroon); font-size: 2em; margin-bottom: 30px; border-bottom: 2px solid var(--nav-bg-tan); display: inline-block; padding-bottom: 10px; }
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 10px; }
+.sukta-card { background-color: #fffdf7; border: 2px solid var(--nav-bg-tan); border-radius: 10px; padding: 30px 20px; text-decoration: none; color: var(--primary-maroon); box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: block; }
+.sukta-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(110, 23, 20, 0.2); background-color: var(--parchment-bg); border-color: var(--primary-maroon); }
+.sukta-card h3 { margin: 0; font-size: 1.5em; font-weight: 700; }
+
+.mantra-container { width: 85%; margin: 40px auto 50px auto; background: #fffdf7; border: 1px solid var(--nav-bg-tan); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+.sanskrit-mantra { background-color: var(--parchment-bg); padding: 30px 40px; text-align: center; font-family: 'Noto Serif Devanagari', serif; font-size: 22px; color: var(--primary-maroon); font-weight: 600; line-height: 1.8; border-bottom: 2px solid var(--primary-maroon); }
+
+.tabs { display: flex; background-color: var(--nav-bg-tan); flex-wrap: wrap; }
+.tab-btn { flex: 1; padding: 15px; background: none; border: none; cursor: pointer; font-size: 16px; font-weight: bold; color: var(--primary-maroon); }
+.tab-btn.active, .tab-btn:hover { background-color: var(--primary-maroon); color: white; }
+.tab-content { display: none; padding: 30px; }
+h3 { color: var(--primary-maroon); border-bottom: 2px solid var(--nav-bg-tan); padding-bottom: 5px; display: inline-block; }
+
+.word-meaning-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+.word-meaning-table td { padding: 12px; border-bottom: 1px solid #e0d8c3; }
+.word-meaning-table td:first-child { font-weight: bold; color: var(--primary-maroon); width: 30%; font-family: 'Noto Serif Devanagari', serif; font-size: 1.1em; }
+
+.content-text { text-align: justify; font-size: 1.1em; line-height: 1.8; }
+.bhashya-selector { padding: 12px; font-size: 16px; border: 2px solid var(--primary-maroon); border-radius: 4px; background-color: #fffaf0; color: var(--text-dark); font-weight: 600; width: 100%; max-width: 400px; cursor: pointer; }
+.bhashya-detail { display: none; margin-top: 15px; text-align: justify; padding: 20px; border-left: 4px solid var(--primary-maroon); background: #fdfaf5; font-size: 1.1em; line-height: 1.8; }
+
+footer { text-align: center; padding: 20px; background-color: var(--nav-bg-tan); color: var(--primary-maroon); font-weight: bold; margin-top: 40px; }

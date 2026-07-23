@@ -4,280 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ಸೂಕ್ತಿ ಸೌರಭ - Team Trayee</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Team Trayee Color Palette */
-        :root {
-            --primary-maroon: #6e1714;
-            --bg-light-yellow: #fdedb3;
-            --nav-bg-tan: #cba26c;
-            --card-bg-tan: #b68b57;
-            --text-dark: #333333;
-            --parchment-bg: #e6c898;
-        }
-
-        body {
-            font-family: 'Noto Sans Kannada', 'Mukta', sans-serif;
-            background-color: var(--bg-light-yellow);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            background-color: var(--nav-bg-tan);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .navbar-brand {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-maroon);
-            text-decoration: none;
-        }
-
-        .nav-links a {
-            color: var(--primary-maroon);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        /* Hero / Header Section */
-        .hero {
-            background-color: var(--parchment-bg);
-            background-image: radial-gradient(circle, transparent 20%, var(--parchment-bg) 20%, var(--parchment-bg) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, var(--parchment-bg) 20%, var(--parchment-bg) 80%, transparent 80%, transparent) 25px 25px;
-            background-size: 50px 50px;
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 3px solid var(--primary-maroon);
-        }
-
-        .hero h1 {
-            color: var(--primary-maroon);
-            font-size: 3em;
-            margin: 0;
-            font-family: 'Noto Serif Devanagari', serif;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            color: var(--primary-maroon);
-            font-weight: 600;
-        }
-
-        /* Advanced Search Section */
-        .search-section {
-            background-color: var(--card-bg-tan);
-            margin: 40px auto;
-            padding: 30px;
-            width: 80%;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .search-section h2 {
-            color: var(--primary-maroon);
-            margin-top: 0;
-        }
-
-        .search-bar-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .search-input {
-            padding: 12px;
-            font-size: 16px;
-            border: 2px solid var(--primary-maroon);
-            border-radius: 4px;
-            width: 30%;
-            min-width: 200px;
-            background-color: #fffaf0;
-        }
-
-        .search-btn {
-            background-color: var(--primary-maroon);
-            color: white;
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .search-btn:hover {
-            background-color: #52110e;
-        }
-
-        /* Sukta Grid Section */
-        .sukta-collection {
-            width: 85%;
-            margin: 0 auto 60px auto;
-            text-align: center;
-        }
-        
-        .sukta-collection h2 {
-            color: var(--primary-maroon);
-            font-size: 2em;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--nav-bg-tan);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 10px;
-        }
-
-        .sukta-card {
-            background-color: #fffdf7;
-            border: 2px solid var(--nav-bg-tan);
-            border-radius: 10px;
-            padding: 30px 20px;
-            text-decoration: none;
-            color: var(--primary-maroon);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sukta-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(110, 23, 20, 0.2);
-            background-color: var(--parchment-bg);
-            border-color: var(--primary-maroon);
-        }
-
-        .sukta-card h3 {
-            margin: 0;
-            font-size: 1.5em;
-            font-weight: 700;
-        }
-
-        .sukta-card p {
-            margin: 10px 0 0 0;
-            font-size: 1em;
-            color: #555;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--nav-bg-tan);
-            color: var(--primary-maroon);
-            font-weight: bold;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <!-- Navbar -->
     <nav class="navbar">
-        <a href="#" class="navbar-brand">Team Trayee</a>
+        <a href="index.html" class="navbar-brand">Team Trayee</a>
         <div class="nav-links">
             <a href="index.html">ಮುಖಪುಟ</a>
             <a href="#">ಸೂಕ್ತಿ ಸೌರಭ</a>
-            <a href="#">ಪರಿಚಯ</a>
-            <a href="#">ಸಂಪರ್ಕ</a>
         </div>
     </nav>
 
-    <!-- Header Section -->
     <header class="hero">
         <h1>सूक्ति सौरभ</h1>
-        <p>ಸೂಕ್ತಿ ಸೌರಭ - ವೇದ ಮಂತ್ರಗಳು ಮತ್ತು ವಿಶಿಷ್ಟ ಭಾಷ್ಯಗಳ ಡಿಜಿಟಲ್ ಸಂಗ್ರಹ</p>
+        <p>ವೇದ ಮಂತ್ರಗಳು ಮತ್ತು ವಿಶಿಷ್ಟ ಭಾಷ್ಯಗಳ ಡಿಜಿಟಲ್ ಸಂಗ್ರಹ</p>
     </header>
 
-    <!-- Advanced Search Component -->
     <section class="search-section">
         <h2>ಮಂತ್ರ / ಶಬ್ದ ಶೋಧನೆ</h2>
-        <form class="search-bar-container" onsubmit="event.preventDefault(); alert('Search functionality will be added dynamically.');">
+        <form class="search-bar-container" onsubmit="event.preventDefault();">
             <input type="text" class="search-input" placeholder="ಯಾವುದೇ ಶಬ್ದವನ್ನು ಟೈಪ್ ಮಾಡಿ...">
-            <input type="text" class="search-input" placeholder="ಮಂತ್ರದ ರೆಫರೆನ್ಸ್ (ಉದಾ: ೮೦ನೇ ಅನುವಾಕ)">
-            <select class="search-input">
-                <option value="">ಎಲ್ಲಾ ಭಾಷ್ಯಗಳು</option>
-                <option value="sayana">ಸಾಯಣ ಭಾಷ್ಯ</option>
-                <option value="shankara">ಶಂಕರ ಭಾಷ್ಯ</option>
-                <option value="bhattabhaskara">ಭಟ್ಟಭಾಸ್ಕರ ಭಾಷ್ಯ</option>
-            </select>
             <button type="submit" class="search-btn">ಹುಡುಕಿ</button>
         </form>
     </section>
 
-    <!-- Sukta Grid Collection -->
     <section class="sukta-collection">
         <h2>ಪ್ರಮುಖ ಸೂಕ್ತಗಳು ಮತ್ತು ಉಪನಿಷತ್ತುಗಳು</h2>
         <div class="grid-container">
-            <!-- Card 1 -->
-            <a href="shikshavalli.html" class="sukta-card">
-                <h3>ಶಿಕ್ಷಾವಲ್ಲಿ</h3>
-                <p>ತೈತ್ತಿರೀಯ ಉಪನಿಷತ್ತಿನ ಪ್ರಥಮ ವಲ್ಲಿ</p>
+            <!-- Dynamic Link to Shikshavalli Anuvaka 1 -->
+            <a href="sukta.html?id=taittiriya/shikshavalli-01" class="sukta-card">
+                <h3>ಶಿಕ್ಷಾವಲ್ಲಿ - ಶಾಂತಿ ಪಾಠ</h3>
+                <p>ಪ್ರಥಮ ಅನುವಾಕ</p>
             </a>
             
-            <!-- Card 2 -->
-            <a href="brahmanandavalli.html" class="sukta-card">
+            <a href="#" class="sukta-card">
                 <h3>ಬ್ರಹ್ಮಾನಂದವಲ್ಲಿ</h3>
-                <p>ತೈತ್ತಿರೀಯ ಉಪನಿಷತ್ತಿನ ದ್ವಿತೀಯ ವಲ್ಲಿ</p>
+                <p>ತೈತ್ತಿರೀಯ ಉಪನಿಷತ್ತು</p>
             </a>
-
-            <!-- Card 3 -->
-            <a href="bhruguvalli.html" class="sukta-card">
-                <h3>ಭೃಗುವಲ್ಲಿ</h3>
-                <p>ತೈತ್ತಿರೀಯ ಉಪನಿಷತ್ತಿನ ತೃತೀಯ ವಲ್ಲಿ</p>
-            </a>
-
-            <!-- Card 4 -->
-            <a href="mahanarayanopanishattu.html" class="sukta-card">
+            
+            <a href="#" class="sukta-card">
                 <h3>ಮಹಾನಾರಾಯಣೋಪನಿಷತ್ತು</h3>
-                <p>ಆತ್ಮಯಜ್ಞ ಮುಂತಾದ ತತ್ವಗಳ ವಿವರಣೆ</p>
-            </a>
-
-            <!-- Card 5 -->
-            <a href="rudra-namaka.html" class="sukta-card">
-                <h3>ರುದ್ರ ನಮಕ</h3>
-                <p>ಶ್ರೀ ರುದ್ರಪ್ರಶ್ನ - ನಮಕ</p>
-            </a>
-
-            <!-- Card 6 -->
-            <a href="rudra-chamaka.html" class="sukta-card">
-                <h3>ರುದ್ರ ಚಮಕ</h3>
-                <p>ಶ್ರೀ ರುದ್ರಪ್ರಶ್ನ - ಚಮಕ</p>
-            </a>
-
-            <!-- Card 7 -->
-            <a href="purushasukta.html" class="sukta-card">
-                <h3>ಪುರುಷಸೂಕ್ತ</h3>
-                <p>ವಿಶ್ವಪುರುಷನ ಸ್ತುತಿ</p>
+                <p>ಆತ್ಮಯಜ್ಞ ಮುಂತಾದವು</p>
             </a>
         </div>
     </section>
 
-    <footer>
-        &copy; 2026 Team Trayee. ಸರ್ವ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.
-    </footer>
-
+    <footer>&copy; 2026 Team Trayee. ಸರ್ವ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</footer>
 </body>
 </html>

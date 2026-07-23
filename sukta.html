@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">ಮಂತ್ರ ವಿವರಣೆ - ಸೂಕ್ತಿ ಸೌರಭ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Team Trayee</a>
+        <div class="nav-links">
+            <a href="index.html">ಮುಖಪುಟ</a>
+            <a href="#">ಸೂಕ್ತಿ ಸೌರಭ</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1 id="sukta-title">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</h1>
+        <p id="sukta-subtitle"></p>
+        <p id="sukta-desc" style="font-weight: normal; margin-top: 10px;"></p>
+    </header>
+
+    <main class="mantra-container">
+        <!-- Sanskrit Mantra with Swara -->
+        <div class="sanskrit-mantra" id="sanskrit-mantra">
+            <!-- JSON Data will be injected here -->
+        </div>
+
+        <!-- Tab Buttons -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab(event, 'Shabdasha')">ಶಬ್ದಶಃ ಅರ್ಥ</button>
+            <button class="tab-btn" onclick="openTab(event, 'Bhavanuvada')">ಭಾವಾನುವಾದ</button>
+            <button class="tab-btn" onclick="openTab(event, 'Vyakarana')">ವ್ಯಾಕರಣ ವಿಶೇಷ</button>
+            <button class="tab-btn" onclick="openTab(event, 'Bhashya')">ಭಾಷ್ಯಗಳು</button>
+        </div>
+
+        <!-- Tab Content: Word by Word -->
+        <div id="Shabdasha" class="tab-content" style="display: block;">
+            <table class="word-meaning-table" id="shabdartha-table">
+                <!-- Data injected via JS -->
+            </table>
+        </div>
+
+        <!-- Tab Content: Translation -->
+        <div id="Bhavanuvada" class="tab-content">
+            <h3>ಭಾವಾನುವಾದ</h3>
+            <p class="content-text" id="bhavanuvada-text"></p>
+        </div>
+
+        <!-- Tab Content: Grammar -->
+        <div id="Vyakarana" class="tab-content">
+            <h3>ವ್ಯಾಕರಣ ವಿಶೇಷಗಳು</h3>
+            <ul id="vyakarana-list"></ul>
+        </div>
+
+        <!-- Tab Content: Commentaries -->
+        <div id="Bhashya" class="tab-content">
+            <h3>ವಿವಿಧ ಭಾಷ್ಯಗಳು ಮತ್ತು ಅವುಗಳ ಅರ್ಥ</h3>
+            <select class="bhashya-selector" id="bhashya-dropdown" onchange="showBhashya(this.value)">
+                <option value="advaita">೧. ಆದಿ ಶಂಕರಾಚಾರ್ಯರ ಭಾಷ್ಯ (ಅದ್ವೈತ)</option>
+                <option value="dvaita">೨. ಶ್ರೀ ಮಧ್ವಾಚಾರ್ಯರ ಭಾಷ್ಯ (ದ್ವೈತ)</option>
+                <option value="vishishtadvaita">೩. ಶ್ರೀ ರಾಮಾನುಜಾಚಾರ್ಯರ ಭಾಷ್ಯ (ವಿಶಿಷ್ಟಾದ್ವೈತ)</option>
+            </select>
+            
+            <div id="advaita" class="bhashya-detail" style="display: block;"></div>
+            <div id="dvaita" class="bhashya-detail"></div>
+            <div id="vishishtadvaita" class="bhashya-detail"></div>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 Team Trayee. ಸರ್ವ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</footer>
+
+    <!-- Link to JS logic -->
+    <script src="js/app.js"></script>
+</body>
+</html>
