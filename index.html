@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Trayee | Premium Digital Vedic Learning Platform</title>
+    <meta name="description" content="A comprehensive digital platform for learning Vedic Suktas, Mantras, and Shastras with authentic translations, grammar, and traditional commentaries.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration (Preserving V1 Identity) -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        saffron: { 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
+                        cream: '#fdfbf7',
+                        brown: { 50: '#fdf8f6', 800: '#5c3a21', 900: '#452615', 950: '#2e1609' }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        sanskrit: ['Noto Sans Devanagari', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Reusable Design System & Utility Classes -->
+    <style type="text/tailwindcss">
+        @layer components {
+            /* Layout & Backgrounds */
+            .glass-nav { @apply bg-[rgba(253,251,247,0.9)] backdrop-blur-md dark:bg-[rgba(46,22,9,0.9)]; }
+            .mandala-bg { background-image: radial-gradient(circle at center, rgba(234, 88, 12, 0.05) 0%, transparent 70%); }
+            .dark .mandala-bg { background-image: radial-gradient(circle at center, rgba(234, 88, 12, 0.1) 0%, transparent 70%); }
+            
+            /* Typography */
+            .heading-primary { @apply font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-brown-950 dark:text-cream leading-tight tracking-tight; }
+            .heading-section { @apply font-serif text-3xl md:text-4xl font-bold text-brown-950 dark:text-cream mb-4; }
+            .heading-card { @apply font-serif text-xl font-bold text-brown-900 dark:text-cream mb-3; }
+            .text-body { @apply font-sans text-gray-600 dark:text-gray-300 leading-relaxed; }
+            .verse-sanskrit { @apply font-sanskrit text-2xl text-brown-950 dark:text-saffron-100 font-medium; }
+            
+            /* Reusable Components */
+            .card-standard { @apply bg-white dark:bg-brown-900 rounded-2xl shadow-sm border border-gray-100 dark:border-brown-800 p-8 transform hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col h-full; }
+            .card-interactive { @apply group bg-white dark:bg-brown-900 rounded-2xl shadow-sm border border-gray-100 dark:border-brown-800 p-6 transform hover:-translate-y-2 hover:shadow-xl hover:border-saffron-200 dark:hover:border-saffron-900 transition-all duration-300 block; }
+            
+            /* Buttons */
+            .btn-primary { @apply inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-saffron-600 hover:bg-saffron-700 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300; }
+            .btn-secondary { @apply inline-flex justify-center items-center px-8 py-4 border-2 border-brown-900 dark:border-cream text-base font-medium rounded-full text-brown-900 dark:text-cream hover:bg-brown-900 hover:text-white dark:hover:bg-cream dark:hover:text-brown-950 transform hover:-translate-y-0.5 transition-all duration-300; }
+            .link-text { @apply text-sm font-medium text-brown-900 dark:text-cream border-b-2 border-saffron-500 pb-1 inline-block hover:text-saffron-600 dark:hover:text-saffron-400 transition-colors; }
+        }
+
+        /* Utilities */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-sans bg-cream text-gray-800 dark:bg-brown-950 dark:text-gray-200 transition-colors duration-300 antialiased selection:bg-saffron-200 selection:text-brown-950 dark:selection:bg-saffron-700 dark:selection:text-white">
+
+    <!-- 1. Sticky Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-gray-200 dark:border-brown-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-serif text-2xl font-bold text-saffron-600 dark:text-saffron-500 flex items-center gap-2">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        Team Trayee
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-saffron-600 dark:text-saffron-400 font-medium transition-colors">Home</a>
+                    <a href="suktas.html" class="text-gray-600 hover:text-saffron-600 dark:text-gray-300 dark:hover:text-saffron-400 font-medium transition-colors">Suktas</a>
+                    <a href="learn.html" class="text-gray-600 hover:text-saffron-600 dark:text-gray-300 dark:hover:text-saffron-400 font-medium transition-colors">Learn</a>
+                    <a href="#search" class="text-gray-600 hover:text-saffron-600 dark:text-gray-300 dark:hover:text-saffron-400 font-medium transition-colors">Search</a>
+                    <a href="about.html" class="text-gray-600 hover:text-saffron-600 dark:text-gray-300 dark:hover:text-saffron-400 font-medium transition-colors">About</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-brown-800 transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4.22 2.32a1 1 0 011.415 0l.708.708a1 1 0 01-1.414 1.415l-.708-.708a1 1 0 010-1.415zM17 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zm-2.32 4.22a1 1 0 010 1.415l-.708.708a1 1 0 01-1.415-1.414l.708-.708a1 1 0 011.415 0zM10 16a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4.22-2.32a1 1 0 010-1.415l-.708-.708a1 1 0 01-1.415 1.414l.708.708a1 1 0 011.415 0zM4 10a1 1 0 01-1 1H2a1 1 0 110-2h1a1 1 0 011 1zm2.32-4.22a1 1 0 011.415-1.414l-.708-.708a1 1 0 01-1.414 1.415l.708.708zM10 14a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 text-gray-600 dark:text-gray-300 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-brown-900 border-t border-gray-100 dark:border-brown-800 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-saffron-600 dark:text-saffron-400 bg-gray-50 dark:bg-brown-800">Home</a>
+                <a href="suktas.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-saffron-600 hover:bg-gray-50 dark:hover:bg-brown-800">Suktas</a>
+                <a href="learn.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-saffron-600 hover:bg-gray-50 dark:hover:bg-brown-800">Learn</a>
+                <a href="#search" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-200 hover:text-saffron-600 hover:bg-gray-50 dark:hover:bg-brown-800">Search</a>
+                <div class="px-3 py-2 flex justify-between items-center border-t border-gray-100 dark:border-brown-800 mt-2 pt-4">
+                    <span class="text-gray-700 dark:text-gray-200 font-medium">Dark Mode</span>
+                    <button id="mobile-theme-toggle" class="p-2 bg-gray-100 dark:bg-brown-800 rounded-full">
+                        <svg class="w-5 h-5 text-gray-600 dark:text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden mandala-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-saffron-100 dark:bg-brown-800 text-saffron-700 dark:text-saffron-300 text-sm font-semibold tracking-wider uppercase mb-6 shadow-sm border border-saffron-200 dark:border-brown-700">Digital Vedic Learning Platform</span>
+            
+            <h1 class="heading-primary mb-6">
+                Preserving the <span class="text-saffron-600 dark:text-saffron-500">Wisdom</span><br class="hidden md:block"> of the Shastras.
+            </h1>
+            
+            <p class="mt-4 text-lg md:text-xl text-body max-w-3xl mx-auto mb-10">
+                A scholarly sanctuary for learning Vedic Suktas, Stotras, and Sanskrit Grammar. Master the ancient sciences with authentic translations, padaccheda, and traditional parampara commentaries.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="learn.html" class="btn-primary">
+                    Start Learning
+                </a>
+                <a href="suktas.html" class="btn-secondary">
+                    Explore Library
+                </a>
+            </div>
+        </div>
+        
+        <!-- Subtle glowing ambient background -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-saffron-200 dark:bg-saffron-900 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-[100px] opacity-20 pointer-events-none"></div>
+    </header>
+
+    <!-- 3. Why Team Trayee -->
+    <section class="py-20 relative z-20 -mt-10 lg:-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-standard bg-white/95 dark:bg-brown-900/95 backdrop-blur-xl">
+                    <div class="w-12 h-12 rounded-full bg-saffron-100 dark:bg-brown-800 flex items-center justify-center mb-6 text-saffron-600 dark:text-saffron-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="heading-card">Authentic Tradition</h3>
+                    <p class="text-body flex-grow text-sm">Rooted in the traditional Parampara, our materials reflect uncompromised adherence to classical Vedic scholarship and ancient commentaries.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card-standard bg-white/95 dark:bg-brown-900/95 backdrop-blur-xl">
+                    <div class="w-12 h-12 rounded-full bg-saffron-100 dark:bg-brown-800 flex items-center justify-center mb-6 text-saffron-600 dark:text-saffron-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="heading-card">Academic Rigor</h3>
+                    <p class="text-body flex-grow text-sm">Every Sukta is meticulously analyzed with comprehensive Padaccheda (word splitting), precise grammar mapping, and linguistic accuracy.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card-standard bg-white/95 dark:bg-brown-900/95 backdrop-blur-xl">
+                    <div class="w-12 h-12 rounded-full bg-saffron-100 dark:bg-brown-800 flex items-center justify-center mb-6 text-saffron-600 dark:text-saffron-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="heading-card">Universal Access</h3>
+                    <p class="text-body flex-grow text-sm">Designed for both global seekers and traditional scholars, presenting deep philosophical concepts seamlessly in English, Kannada, and Sanskrit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Featured Learning Categories -->
+    <section class="py-20 bg-cream dark:bg-brown-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading-section">Explore the Shastras</h2>
+                <div class="h-1 w-24 bg-saffron-500 mx-auto rounded"></div>
+                <p class="text-body mt-4 max-w-2xl mx-auto">Select a category to begin your study of the ancient texts.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="suktas.html" class="card-interactive">
+                    <h3 class="font-serif text-xl font-bold text-brown-900 dark:text-cream mb-2 flex items-center justify-between">
+                        Vedic Suktas
+                        <span class="text-saffron-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
+                    </h3>
+                    <p class="text-body text-sm">Hymns from the Rigveda, Yajurveda, Samaveda, and Atharvaveda with deep grammatical analysis.</p>
+                </a>
+                
+                <a href="stotras.html" class="card-interactive">
+                    <h3 class="font-serif text-xl font-bold text-brown-900 dark:text-cream mb-2 flex items-center justify-between">
+                        Stotras
+                        <span class="text-saffron-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
+                    </h3>
+                    <p class="text-body text-sm">Classical devotional verses and philosophical poetry for daily chanting and reflection.</p>
+                </a>
+                
+                <a href="gita.html" class="card-interactive">
+                    <h3 class="font-serif text-xl font-bold text-brown-900 dark:text-cream mb-2 flex items-center justify-between">
+                        Bhagavad Gita
+                        <span class="text-saffron-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
+                    </h3>
+                    <p class="text-body text-sm">Chapter-by-chapter study of the divine song, complete with word meanings and Shankara Bhashya.</p>
+                </a>
+                
+                <a href="upanishads.html" class="card-interactive">
+                    <h3 class="font-serif text-xl font-bold text-brown-900 dark:text-cream mb-2 flex items-center justify-between">
+                        Upanishads
+                        <span class="text-saffron-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
+                    </h3>
+                    <p class="text-body text-sm">The philosophical culmination of the Vedas (Vedanta), revealing the nature of the absolute reality.</p>
+                </a>
+                
+                <a href="grammar.html" class="card-interactive">
+                    <h3 class="font-serif text-xl font-bold text-brown-900 dark:text-cream mb-2 flex items-center justify-between">
+                        Sanskrit Grammar
+                        <span class="text-saffron-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
+                    </h3>
+                    <p class="text-body text-sm">Master Vyakarana. Learn Sandhi, Samasa, Dhatu Rupa, and sentence construction structurally.</p>
+                </a>
+                
+                <a href="shastras.html" class="card-interactive">
+                    <h3 class="font-serif text-xl font-bold text-brown-900 dark:text-cream mb-2 flex items-center justify-between">
+                        Shastra Studies
+                        <span class="text-saffron-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
+                    </h3>
+                    <p class="text-body text-sm">Introductions to Nyaya, Mimamsa, and various Darshanas establishing logical frameworks.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Featured Sukta -->
+    <section class="py-20 border-t border-gray-200 dark:border-brown-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span class="text-xs font-bold uppercase tracking-widest text-saffron-600 dark:text-saffron-400 mb-4 block text-center">Featured Study</span>
+            <div class="bg-white dark:bg-brown-900 rounded-3xl shadow-lg border border-gray-100 dark:border-brown-800 overflow-hidden flex flex-col md:flex-row transform transition duration-500 hover:shadow-xl">
+                <div class="bg-saffron-50 dark:bg-brown-800/50 p-10 md:w-2/5 flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-saffron-100 dark:border-brown-800">
+                    <h3 class="font-sanskrit text-4xl font-bold text-brown-900 dark:text-cream mb-2">पुरुषसूक्तम्</h3>
+                    <h4 class="font-serif text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Purusha Sukta</h4>
+                    <span class="px-3 py-1 bg-white dark:bg-brown-900 text-xs font-bold text-brown-900 dark:text-cream rounded-full border border-gray-200 dark:border-brown-700">Rigveda</span>
+                </div>
+                <div class="p-8 md:p-10 md:w-3/5 flex flex-col justify-center">
+                    <p class="verse-sanskrit text-lg mb-4 text-gray-700 dark:text-gray-300">सहस्रशीर्षा पुरुषः सहस्राक्षः सहस्रपात् ।</p>
+                    <p class="text-body mb-8">
+                        The definitive hymn of cosmic creation. Study the Purusha Sukta to understand the spiritual unity of the universe, with our complete module featuring grammatical word-splits, root analysis, and deep philosophical insights.
+                    </p>
+                    <a href="sukta-detail.html" class="btn-primary self-start">
+                        Begin Study &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Learning Journey -->
+    <section class="py-20 bg-gray-50 dark:bg-brown-950 border-y border-gray-200 dark:border-brown-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading-section">Structured Learning Paths</h2>
+                <p class="text-body max-w-2xl mx-auto mt-4">Follow a pedagogical sequence designed to elevate your understanding from reading script to analyzing classical commentary.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Beginner -->
+                <article class="bg-white dark:bg-brown-900 rounded-3xl p-8 shadow-md border-t-4 border-green-500 hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full relative overflow-hidden">
+                    <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mb-2">Beginner</h3>
+                    <p class="text-sm text-green-600 dark:text-green-400 font-medium mb-6 uppercase tracking-wider">Foundation & Script</p>
+                    <ul class="text-body space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Mastering the Devanagari script</li>
+                        <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Phonetics and precise pronunciation</li>
+                        <li class="flex items-start"><svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Basic daily prayers and their meanings</li>
+                    </ul>
+                    <a href="learn.html#beginner" class="text-center block w-full py-3 px-4 bg-green-50 text-green-700 dark:bg-brown-800 dark:text-green-400 rounded-xl font-medium hover:bg-green-100 dark:hover:bg-brown-700 transition-colors">Start Basics</a>
+                </article>
+
+                <!-- Intermediate -->
+                <article class="bg-white dark:bg-brown-900 rounded-3xl p-8 shadow-xl border-t-4 border-saffron-500 transform md:-translate-y-4 hover:-translate-y-6 transition-transform duration-300 flex flex-col h-full relative overflow-hidden ring-1 ring-saffron-100 dark:ring-saffron-900">
+                    <div class="absolute top-0 right-0 bg-saffron-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">CORE STUDY</div>
+                    <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mb-2">Intermediate</h3>
+                    <p class="text-sm text-saffron-600 dark:text-saffron-400 font-medium mb-6 uppercase tracking-wider">Grammar & Syntax</p>
+                    <ul class="text-body space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start"><svg class="w-5 h-5 text-saffron-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Padaccheda: Splitting complex words</li>
+                        <li class="flex items-start"><svg class="w-5 h-5 text-saffron-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Decoding Sandhi and Samasa rules</li>
+                        <li class="flex items-start"><svg class="w-5 h-5 text-saffron-500 mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Translating major Vedic Suktas independently</li>
+                    </ul>
+                    <a href="learn.html#intermediate" class="text-center block w-full py-3 px-4 bg-saffron-600 text-white rounded-xl font-medium hover:bg-saffron-700 transition-colors shadow-md">Continue Journey</a>
+                </article>
+
+                <!-- Scholar -->
+                <article class="bg-white dark:bg-brown-900 rounded-3xl p-8 shadow-md border-t-4 border-brown-700 dark:border-cream hover:-translate-y-2 transition-transform duration-300 flex flex-col h-full relative overflow-hidden">
+                    <h3 class="font-serif text-2xl font-bold text-gray-900 dark:text-white mb-2">Scholar</h3>
+                    <p class="text-sm text-brown-600 dark:text-gray-400 font-medium mb-6 uppercase tracking-wider">Philosophy & Exegesis</p>
+                    <ul class="text-body space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start"><svg class="w-5 h-5 text-brown-700 dark:text-cream mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Deep diving into traditional Bhashyas</li>
+                        <li class="flex items-start"><svg class="w-5 h-5 text-brown-700 dark:text-cream mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Advanced Paninian grammar structures</li>
+                        <li class="flex items-start"><svg class="w-5 h-5 text-brown-700 dark:text-cream mr-3 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Vedic intonation (Swara) mastery</li>
+                    </ul>
+                    <a href="learn.html#advanced" class="text-center block w-full py-3 px-4 bg-brown-50 text-brown-900 dark:bg-brown-800 dark:text-cream rounded-xl font-medium hover:bg-brown-100 dark:hover:bg-brown-700 transition-colors">Access Archives</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Why Learn Here (Features Grid) -->
+    <section class="py-20 bg-cream dark:bg-brown-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading-section">The Anatomy of Our Study Modules</h2>
+                <div class="h-1 w-24 bg-saffron-500 mx-auto rounded"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 lg:gap-12">
+                <!-- Feature 1 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Authentic Sources</h3>
+                    <p class="text-body text-sm">Texts verified against original manuscripts.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Traditional Approach</h3>
+                    <p class="text-body text-sm">Adhering strictly to classical Sampradaya.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Dual Translations</h3>
+                    <p class="text-body text-sm">Clear meanings provided in both English & Kannada.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Deep Grammar</h3>
+                    <p class="text-body text-sm">Dhatu, Samasa, and linguistic breakdowns.</p>
+                </div>
+                <!-- Feature 5 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v11m0 5l4.879-4.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242z"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Word Meanings</h3>
+                    <p class="text-body text-sm">Precise tables defining every root word.</p>
+                </div>
+                <!-- Feature 6 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Commentaries</h3>
+                    <p class="text-body text-sm">Insights from Sayana, Shankara, and others.</p>
+                </div>
+                <!-- Feature 7 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">References</h3>
+                    <p class="text-body text-sm">Citations for rigorous academic research.</p>
+                </div>
+                <!-- Feature 8 -->
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-saffron-100 text-saffron-600 dark:bg-brown-800 dark:text-saffron-400 mb-4 shadow-sm border border-saffron-200 dark:border-brown-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h3 class="font-serif font-bold text-brown-900 dark:text-cream mb-2">Structured Path</h3>
+                    <p class="text-body text-sm">A systematic journey from basics to mastery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Search Preview -->
+    <section id="search" class="py-24 bg-white dark:bg-brown-900 border-y border-gray-200 dark:border-brown-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="heading-section mb-8">Locate Specific Knowledge</h2>
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                    <svg class="h-6 w-6 text-gray-400 group-focus-within:text-saffron-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="text" class="block w-full pl-16 pr-4 py-6 border border-gray-200 dark:border-brown-700 rounded-full leading-5 bg-gray-50 dark:bg-brown-800 text-gray-900 dark:text-cream placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-saffron-500 shadow-inner text-xl transition-all" placeholder="Search Mantra, Sukta, Sanskrit word...">
+                <button class="absolute inset-y-3 right-3 bg-brown-900 hover:bg-brown-950 dark:bg-cream dark:hover:bg-gray-200 dark:text-brown-950 text-white px-8 py-3 rounded-full font-medium transition-colors shadow-md">
+                    Search Archive
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Testimonials -->
+    <section class="py-20 bg-cream dark:bg-brown-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="heading-section">Voices of the Community</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-standard">
+                    <svg class="w-8 h-8 text-saffron-300 dark:text-brown-700 mb-4" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+                    <p class="text-body italic mb-6 flex-grow">"Team Trayee brings the rigorous clarity of a traditional Gurukula directly into the digital age. The breakdown of Samasa and grammar is unmatched anywhere else online."</p>
+                    <div class="flex items-center">
+                        <div>
+                            <p class="font-serif font-bold text-brown-900 dark:text-cream">Acharya V. Sharma</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Vedic Scholar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-standard">
+                    <svg class="w-8 h-8 text-saffron-300 dark:text-brown-700 mb-4" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+                    <p class="text-body italic mb-6 flex-grow">"As a beginner, I was intimidated by Sanskrit. The dual translations in Kannada and English, combined with exact word meanings, made studying the Upanishads approachable."</p>
+                    <div class="flex items-center">
+                        <div>
+                            <p class="font-serif font-bold text-brown-900 dark:text-cream">Kavya N.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">University Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-standard">
+                    <svg class="w-8 h-8 text-saffron-300 dark:text-brown-700 mb-4" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"/></svg>
+                    <p class="text-body italic mb-6 flex-grow">"A masterpiece of digital preservation. The UI is calm, allowing the mind to focus entirely on the sacred texts without distraction. Exactly what a modern study platform should be."</p>
+                    <div class="flex items-center">
+                        <div>
+                            <p class="font-serif font-bold text-brown-900 dark:text-cream">Dr. Arvind Iyer</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Researcher, Indology</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Call to Action -->
+    <section class="py-24 bg-saffron-600 dark:bg-saffron-700 relative overflow-hidden">
+        <div class="absolute inset-0 mandala-bg opacity-20"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">Begin Your Vedic Journey</h2>
+            <p class="text-saffron-100 mb-10 text-xl font-medium max-w-2xl mx-auto">
+                Step into the ocean of knowledge. All resources are freely available for sincere seekers of truth.
+            </p>
+            <a href="learn.html" class="inline-flex justify-center items-center px-10 py-5 bg-white text-saffron-700 text-lg font-bold rounded-full shadow-2xl hover:bg-gray-50 hover:scale-105 transform transition-all duration-300">
+                Enter the Library &rarr;
+            </a>
+        </div>
+    </section>
+
+    <!-- 11. Footer (Strictly Reused) -->
+    <footer id="contact" class="bg-brown-950 text-gray-300 py-12 border-t-4 border-saffron-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="font-serif text-2xl font-bold text-cream flex items-center gap-2 mb-4">
+                        <svg class="w-6 h-6 text-saffron-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        Team Trayee
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                        Illuminating the path of Vedic knowledge through accessible, scholarly, and traditional learning resources.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Explore</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="suktas.html" class="hover:text-saffron-400 transition-colors">Popular Suktas</a></li>
+                        <li><a href="learn.html" class="hover:text-saffron-400 transition-colors">Learning Path</a></li>
+                        <li><a href="grammar.html" class="hover:text-saffron-400 transition-colors">Grammar Notes</a></li>
+                        <li><a href="#" class="hover:text-saffron-400 transition-colors">Vedic Glossary</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about.html" class="hover:text-saffron-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-saffron-400 transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-saffron-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-saffron-400 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Social -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 uppercase tracking-wider text-sm">Connect</h4>
+                    <ul class="space-y-2 text-sm mb-6">
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> namaste@teamtrayee.org</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> Bengaluru, India</li>
+                    </ul>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Twitter"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="YouTube"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd" /></svg></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-brown-900 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2026 Team Trayee. All rights reserved.</p>
+                <p class="mt-2 md:mt-0">Harih Om Tat Sat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check initial theme preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            htmlElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        // Toggle theme function
+        function toggleTheme() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        }
+
+        // Event listeners for toggle buttons
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            if(!link.id.includes('toggle')) {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
