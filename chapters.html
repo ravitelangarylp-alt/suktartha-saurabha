@@ -6,6 +6,17 @@
     <title>ಶಿಕ್ಷಾವಲ್ಲಿ - ವಿಭಾಗಗಳು</title>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ಮಂತ್ರದ ಸಾಲು ಸುಂದರವಾಗಿ ಕಾಣಲು ವಿಶೇಷ ವಿನ್ಯಾಸ */
+        .mantra-snippet {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 1.15em;
+            color: #5c2c16; /* ಕಂದು ಬಣ್ಣ */
+            margin-top: 12px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -22,23 +33,29 @@
     </header>
 
     <section class="sukta-collection">
-        <h2>ಪ್ರಮುಖ ವಿಭಾಗಗಳು (ಅನುವಾಕಗಳು)</h2>
+        <!-- ಶೀರ್ಷಿಕೆಯನ್ನು ಕೇವಲ ಅನುವಾಕಗಳು ಎಂದು ಬದಲಾಯಿಸಲಾಗಿದೆ -->
+        <h2>ಅನುವಾಕಗಳು</h2>
         <div class="grid-container">
             
-            <!-- ಇಲ್ಲಿಂದ ನೇರವಾಗಿ ನಿಮ್ಮ JSON ಡೇಟಾ ಇರುವ ಪುಟಕ್ಕೆ (sukta.html) ಹೋಗುತ್ತದೆ -->
             <a href="sukta.html?id=taittiriya/shikshavalli-01" class="sukta-card">
                 <h3>ಶಾಂತಿ ಮಂತ್ರ</h3>
                 <p>ಪ್ರಥಮ ಅನುವಾಕ</p>
+                <!-- ಮಂತ್ರದ ಮೊದಲ ಸಾಲು -->
+                <p class="mantra-snippet">ॐ शं नो॒ मित्रः॒ शं वरु॑णः ।</p>
             </a>
 
             <a href="sukta.html?id=taittiriya/shikshavalli-02" class="sukta-card">
                 <h3>ಶಿಕ್ಷಾಧ್ಯಾಯ</h3>
                 <p>ದ್ವಿತೀಯ ಅನುವಾಕ</p>
+                <!-- ಮಂತ್ರದ ಮೊದಲ ಸಾಲು -->
+                <p class="mantra-snippet">ॐ शीक्षां व्याख्यास्यामः ।</p>
             </a>
 
             <a href="#" class="sukta-card">
                 <h3>ಸಂಹಿತೋಪಾಸನೆ</h3>
                 <p>ತೃತೀಯ ಅನುವಾಕ</p>
+                <!-- ಮಂತ್ರದ ಮೊದಲ ಸಾಲು -->
+                <p class="mantra-snippet">स॒ह नौ॒ यशः॑ । स॒ह नौ ब्रह्मवर्च॒सम् ।</p>
             </a>
 
         </div>
