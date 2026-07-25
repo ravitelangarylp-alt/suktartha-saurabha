@@ -1,71 +1,62 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Get the ID from the URL (e.g., ?id=taittiriya/shikshavalli-01)
     const urlParams = new URLSearchParams(window.location.search);
     const suktaId = urlParams.get('id');
 
     if (suktaId) {
-        // Fetch the corresponding JSON file
         fetch(`data/${suktaId}.json`)
-            .then(response => response.json())
-            .then(data => populateData(data))
+            .then(response => {
+                if (!response.ok) throw new Error("ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ");
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("sukta-title").textContent = data.sukta_title || "";
+                document.getElementById("anuvaka-title").textContent = data.anuvaka || "";
+                document.getElementById("mantra-desc").textContent = data.description || "";
+                
+                // ಮಂತ್ರ
+                const mantraDiv = document.getElementById("sanskrit-mantra");
+                if(mantraDiv) mantraDiv.innerHTML = data.sanskrit_mantra || "";
+
+                // ಭಾವಾನುವಾದ
+                const bhavDiv = document.getElementById("bhavanuvada-text");
+                if(bhavDiv) bhavDiv.innerHTML = data.bhavanuvada || "";
+
+                // ಶಬ್ದಶಃ ಅರ್ಥ
+                const shabdarthaBody = document.getElementById("shabdartha-body");
+                if(shabdarthaBody && data.shabdartha) {
+                    shabdarthaBody.innerHTML = "";
+                    data.shabdartha.forEach(item => {
+                        let row = `<tr><td>${item.word}</td><td>${item.meaning}</td></tr>`;
+                        shabdarthaBody.innerHTML += row;
+                    });
+                }
+
+                // ವ್ಯಾಕರಣ
+                const vyakaranaList = document.getElementById("vyakarana-list");
+                if(vyakaranaList && data.vyakarana) {
+                    vyakaranaList.innerHTML = "";
+                    data.vyakarana.forEach(item => {
+                        vyakaranaList.innerHTML += `<li>${item}</li>`;
+                    });
+                }
+            })
             .catch(error => {
-                console.error("Error loading JSON data:", error);
-                document.getElementById("sukta-title").innerText = "ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ!";
+                console.error("Error:", error);
+                document.getElementById("sukta-title").textContent = "ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ!";
             });
     }
+
+    // ಅಕಾರ್ಡಿಯನ್ ಲಾಜಿಕ್ (ಕ್ಲಿಕ್ ಮಾಡಿದಾಗ ತೆರೆಯುವುದು)
+    let acc = document.getElementsByClassName("accordion");
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        });
+    }
 });
-
-function populateData(data) {
-    // 1. Header Info
-    document.title = data.sukta_title + " - ಸೂಕ್ತಿ ಸೌರಭ";
-    document.getElementById("sukta-title").innerHTML = data.sukta_title;
-    document.getElementById("sukta-subtitle").innerHTML = data.anuvaka;
-    document.getElementById("sukta-desc").innerHTML = data.description;
-
-    // 2. Sanskrit Mantra
-    document.getElementById("sanskrit-mantra").innerHTML = data.sanskrit_mantra;
-
-    // 3. Shabdartha Table
-    const table = document.getElementById("shabdartha-table");
-    data.shabdartha.forEach(item => {
-        let row = `<tr><td>${item.word}</td><td>${item.meaning}</td></tr>`;
-        table.innerHTML += row;
-    });
-
-    // 4. Bhavanuvada
-    document.getElementById("bhavanuvada-text").innerHTML = data.bhavanuvada;
-
-    // 5. Vyakarana
-    const vyakaranaList = document.getElementById("vyakarana-list");
-    data.vyakarana.forEach(rule => {
-        vyakaranaList.innerHTML += `<li style="margin-bottom:10px; font-size:1.1em;">${rule}</li>`;
-    });
-
-    // 6. Bhashya
-    document.getElementById("advaita").innerHTML = `<strong>ಅದ್ವೈತ ದೃಷ್ಟಿಕೋನ:</strong><br><br>${data.bhashya.advaita}`;
-    document.getElementById("dvaita").innerHTML = `<strong>ದ್ವೈತ ದೃಷ್ಟಿಕೋನ:</strong><br><br>${data.bhashya.dvaita}`;
-    document.getElementById("vishishtadvaita").innerHTML = `<strong>ವಿಶಿಷ್ಟಾದ್ವೈತ ದೃಷ್ಟಿಕೋನ:</strong><br><br>${data.bhashya.vishishtadvaita}`;
-}
-
-// Tab Switching Logic
-function openTab(evt, tabName) {
-    let tabcontent = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    let tablinks = document.getElementsByClassName("tab-btn");
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-// Bhashya Dropdown Logic
-function showBhashya(val) {
-    let details = document.getElementsByClassName("bhashya-detail");
-    for(let i = 0; i < details.length; i++) {
-        details[i].style.display = "none";
-    }
-    document.getElementById(val).style.display = "block";
-}

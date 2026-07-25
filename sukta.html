@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">ಮಂತ್ರ ವಿವರಣೆ - ಸೂಕ್ತಿ ಸೌರಭ</title>
+    <title>ಮಂತ್ರ ವಿವರಣೆ - ಸೂಕ್ತಿ ಸೌರಭ</title>
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Sans+Kannada:wght@400;600;700&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,63 +16,51 @@
         </div>
     </nav>
 
-    <header class="hero">
-        <h1 id="sukta-title">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</h1>
-        <p id="sukta-subtitle"></p>
-        <p id="sukta-desc" style="font-weight: normal; margin-top: 10px;"></p>
-    </header>
+    <div class="container">
+        <!-- ಹಿಂದಕ್ಕೆ ಹೋಗುವ ಬಟನ್ -->
+        <a href="chapters.html" class="back-btn">← ಹಿಂದಿನ ಪುಟಕ್ಕೆ</a>
+        
+        <header class="mantra-header">
+            <h1 id="sukta-title">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</h1>
+            <p id="anuvaka-title"></p>
+            <p id="mantra-desc"></p>
+        </header>
 
-    <main class="mantra-container">
-        <!-- Sanskrit Mantra with Swara -->
-        <div class="sanskrit-mantra" id="sanskrit-mantra">
-            <!-- JSON Data will be injected here -->
-        </div>
+        <section class="mantra-display">
+            <!-- ಮಂತ್ರ ನೇರವಾಗಿ ಕಾಣುತ್ತದೆ -->
+            <div id="sanskrit-mantra" class="mantra-text"></div>
+        </section>
 
-        <!-- Tab Buttons -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="openTab(event, 'Shabdasha')">ಶಬ್ದಶಃ ಅರ್ಥ</button>
-            <button class="tab-btn" onclick="openTab(event, 'Bhavanuvada')">ಭಾವಾನುವಾದ</button>
-            <button class="tab-btn" onclick="openTab(event, 'Vyakarana')">ವ್ಯಾಕರಣ ವಿಶೇಷ</button>
-            <button class="tab-btn" onclick="openTab(event, 'Bhashya')">ಭಾಷ್ಯಗಳು</button>
-        </div>
+        <section class="mantra-details">
+            <!-- ಭಾವಾನುವಾದ (ಯಾವಾಗಲೂ ತೆರೆದಿರುತ್ತದೆ) -->
+            <div class="bhavanuvada-box">
+                <h3>ಭಾವಾನುವಾದ</h3>
+                <p id="bhavanuvada-text"></p>
+            </div>
 
-        <!-- Tab Content: Word by Word -->
-        <div id="Shabdasha" class="tab-content" style="display: block;">
-            <table class="word-meaning-table" id="shabdartha-table">
-                <!-- Data injected via JS -->
-            </table>
-        </div>
+            <!-- ಅಕಾರ್ಡಿಯನ್ (ಕ್ಲಿಕ್ ಮಾಡಿದಾಗ ತೆರೆಯುವ ಬಾಕ್ಸ್‌ಗಳು) -->
+            <button class="accordion">ಶಬ್ದಶಃ ಅರ್ಥ</button>
+            <div class="panel">
+                <table id="shabdartha-table">
+                    <tbody id="shabdartha-body"></tbody>
+                </table>
+            </div>
 
-        <!-- Tab Content: Translation -->
-        <div id="Bhavanuvada" class="tab-content">
-            <h3>ಭಾವಾನುವಾದ</h3>
-            <p class="content-text" id="bhavanuvada-text"></p>
-        </div>
+            <button class="accordion">ವ್ಯಾಕರಣ ವಿಶೇಷ</button>
+            <div class="panel">
+                <ul id="vyakarana-list"></ul>
+            </div>
 
-        <!-- Tab Content: Grammar -->
-        <div id="Vyakarana" class="tab-content">
-            <h3>ವ್ಯಾಕರಣ ವಿಶೇಷಗಳು</h3>
-            <ul id="vyakarana-list"></ul>
-        </div>
-
-        <!-- Tab Content: Commentaries -->
-        <div id="Bhashya" class="tab-content">
-            <h3>ವಿವಿಧ ಭಾಷ್ಯಗಳು ಮತ್ತು ಅವುಗಳ ಅರ್ಥ</h3>
-            <select class="bhashya-selector" id="bhashya-dropdown" onchange="showBhashya(this.value)">
-                <option value="advaita">೧. ಆದಿ ಶಂಕರಾಚಾರ್ಯರ ಭಾಷ್ಯ (ಅದ್ವೈತ)</option>
-                <option value="dvaita">೨. ಶ್ರೀ ಮಧ್ವಾಚಾರ್ಯರ ಭಾಷ್ಯ (ದ್ವೈತ)</option>
-                <option value="vishishtadvaita">೩. ಶ್ರೀ ರಾಮಾನುಜಾಚಾರ್ಯರ ಭಾಷ್ಯ (ವಿಶಿಷ್ಟಾದ್ವೈತ)</option>
-            </select>
-            
-            <div id="advaita" class="bhashya-detail" style="display: block;"></div>
-            <div id="dvaita" class="bhashya-detail"></div>
-            <div id="vishishtadvaita" class="bhashya-detail"></div>
-        </div>
-    </main>
+            <button class="accordion">ಭಾಷ್ಯಗಳು</button>
+            <div class="panel">
+                <p id="bhashya-text">ಭಾಷ್ಯಗಳ ಮಾಹಿತಿ ಸದ್ಯಕ್ಕೆ ಲಭ್ಯವಿಲ್ಲ.</p>
+            </div>
+        </section>
+    </div>
 
     <footer>&copy; 2026 Team Trayee. ಸರ್ವ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</footer>
-
-    <!-- Link to JS logic -->
+    
+    <!-- ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್ ಲಿಂಕ್ -->
     <script src="js/app.js"></script>
 </body>
 </html>
