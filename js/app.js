@@ -1,7 +1,17 @@
 // ನಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿರುವ ಎಲ್ಲಾ JSON ಫೈಲ್‌ಗಳ ಪಟ್ಟಿ
 const allSuktaIds = [
     "taittiriya/shikshavalli-01",
-    "taittiriya/shikshavalli-02"
+    "taittiriya/shikshavalli-02",
+    "taittiriya/shikshavalli-03",
+    "taittiriya/shikshavalli-04",
+    "taittiriya/shikshavalli-05",
+    "taittiriya/shikshavalli-06",
+    "taittiriya/shikshavalli-07",
+    "taittiriya/shikshavalli-08",
+    "taittiriya/shikshavalli-09",
+    "taittiriya/shikshavalli-10",
+    "taittiriya/shikshavalli-11",
+    "taittiriya/shikshavalli-12"
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
