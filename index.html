@@ -21,12 +21,15 @@
         <p>ವೇದ ಮಂತ್ರಗಳು ಮತ್ತು ವಿಶಿಷ್ಟ ಭಾಷ್ಯಗಳ ಸಮಗ್ರ ಡಿಜಿಟಲ್ ಸಂಶೋಧನಾ ವೇದಿಕೆ</p>
     </header>
 
-    <section class="search-section">
+ <section class="search-section">
         <h2>ಮಂತ್ರ / ಶಬ್ದ ಶೋಧನೆ</h2>
-        <form class="search-bar-container" onsubmit="event.preventDefault(); alert('ಮಲ್ಟಿ-ಬಾಕ್ಸ್ ಸರ್ಚ್ ವ್ಯವಸ್ಥೆಯನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗುವುದು!');">
-            <input type="text" class="search-input" placeholder="ಯಾವುದೇ ಶಬ್ದವನ್ನು ಟೈಪ್ ಮಾಡಿ...">
+        <!-- id ಗಳನ್ನು ಸೇರಿಸಲಾಗಿದೆ -->
+        <form class="search-bar-container" id="search-form">
+            <input type="text" id="search-input" class="search-input" placeholder="ದೇವನಾಗರಿಯಲ್ಲಿ ಶಬ್ದವನ್ನು ಟೈಪ್ ಮಾಡಿ (ಉದಾ: मित्रः)">
             <button type="submit" class="search-btn">ಹುಡುಕಿ</button>
         </form>
+        <!-- ಹುಡುಕಿದ ಫಲಿತಾಂಶಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ -->
+        <div id="search-results-container" class="search-results"></div>
     </section>
 
     <section class="sukta-collection">
